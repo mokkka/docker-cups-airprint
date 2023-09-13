@@ -23,6 +23,9 @@ AVAHI_REFLECTOR=${AVAHI_REFLECTOR:="no"}
 AVAHI_REFLECT_IPV=${AVAHI_REFLECT_IPV:="no"}
 [ "yes" = "${CUPS_ENV_DEBUG}" ] && export -n
 
+### assure hostname is set if $CUPS_HOST_NAME was set
+hostname ${CUPS_HOSTNAME}
+
 ### check for valid input
 if printf '%s' "${CUPS_ADMIN_PASSWORD}" | LC_ALL=C grep -q '[^ -~]\+'; then
   RETURN=1; REASON="CUPS password contain illegal non-ASCII characters, aborting!"; exit;
